@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from app.core.database import Base, engine
 from app.api.gym_member_routes import router as gym_member_router
+from app.api.class_routes import router as class_router
 from fastapi.exceptions import RequestValidationError
 
 Base.metadata.create_all(bind=engine)
@@ -29,7 +30,9 @@ async def request_validation_exception_handler(request: Request, exc: RequestVal
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"errors": errors}
     )
-app.include_router(gym_member_router, prefix="/gym-member", tags=["Gym member"])
+    
+app.include_router(gym_member_router, prefix="/gym-members", tags=["Alunos"])
+app.include_router(class_router, prefix="/classes", tags=["Aulas"])
 
 @app.get("/")
 def root():

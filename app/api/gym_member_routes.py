@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from app.dependencies.gym_member_dependencies import get_gym_member_service
+from app.dependencies.dependencies import get_gym_member_service
 from app.schemas.gym_member_schema import GymMemberCreate, GymMemberResponse
 from app.services.gym_member_service import GymMemberService
 

@@ -13,7 +13,7 @@ class GymMemberRepository:
         return self.db.query(GymMember).filter(GymMember.cpf == cpf).first() is not None
     
     def create(self, gym_member: GymMemberCreate):
-        db_member = GymMember(**gym_member.dict())
+        db_member = GymMember(**gym_member.model_dump())
         self.db.add(db_member)
         self.db.commit()
         self.db.refresh(db_member)

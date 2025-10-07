@@ -1,6 +1,7 @@
 from sqlalchemy import Boolean, Column, Date, DateTime, Integer, String, func
+from sqlalchemy.orm import relationship
 from app.core.database import Base
-
+from app.models.gym_member_class_model import gym_member_class_table
 
 class GymMember(Base):
     __tablename__ = "gym_member"
@@ -13,3 +14,5 @@ class GymMember(Base):
     active = Column(Boolean, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at = Column(DateTime(timezone=True), nullable=True)
+    
+    classes = relationship("Class", secondary=gym_member_class_table, back_populates="gym_members")
