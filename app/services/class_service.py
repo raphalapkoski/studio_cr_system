@@ -23,6 +23,10 @@ class ClassService:
             setattr(current_class, key, value)
         return self.repo.update(current_class)
     
+    def delete_class(self, class_id: int):     
+        current_class = self.__get_class_by_id(class_id)
+        return self.repo.delete(current_class)
+    
     def add_gym_member_to_class(self, gym_member_id: int, class_id: int):
         current_class = self.__get_class_by_id(class_id)
         current_gym_member = self.__get_gym_member_by_id(gym_member_id)

@@ -17,6 +17,10 @@ def create_class_endpoint(class_create: ClassCreate, service: ClassService = Dep
 def update_class_endpoint(class_id: int, class_update: ClassUpdate, service: ClassService = Depends(get_class_service)):
     return service.update_class(class_id, class_update)
 
+@router.delete("/{class_id}", response_model=ClassResponse, status_code=201)
+def delete_class_endpoint(class_id: int, service: ClassService = Depends(get_class_service)):
+    return service.delete_class(class_id)
+
 @router.post("/{class_id}/add-gym-member/{gym_member_id}", response_model=ClassResponse)
 def add_gym_member_to_class_endpoint(class_id: int, gym_member_id: int, service: ClassService = Depends(get_class_service)):
     return service.add_gym_member_to_class(gym_member_id, class_id)
