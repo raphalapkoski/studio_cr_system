@@ -5,11 +5,11 @@ from app.services.class_service import ClassService
 
 router = APIRouter()
 
-@router.get("/", response_model=list[ClassResponse])
+@router.get("", response_model=list[ClassResponse])
 def list_class_endpoint(service: ClassService = Depends(get_class_service), skip: int = 0, limit: int = 100):
     return service.get_all_classes(skip, limit)
 
-@router.post("/", response_model=ClassResponse, status_code=201)
+@router.post("", response_model=ClassResponse, status_code=201)
 def create_class_endpoint(classCreate: ClassCreate, service: ClassService = Depends(get_class_service)):
     return service.create_class(classCreate)
 

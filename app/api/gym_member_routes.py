@@ -5,11 +5,11 @@ from app.services.gym_member_service import GymMemberService
 
 router = APIRouter()
 
-@router.get("/", response_model=list[GymMemberResponse])
+@router.get("", response_model=list[GymMemberResponse])
 def list_gym_member_endpoint(service: GymMemberService = Depends(get_gym_member_service), skip: int = 0, limit: int = 100):
     return service.get_all_gym_member(skip, limit)
 
-@router.post("/", response_model=GymMemberResponse, status_code=201)
+@router.post("", response_model=GymMemberResponse, status_code=201)
 def create_gym_member_endpoint(gym_member: GymMemberCreate, service: GymMemberService = Depends(get_gym_member_service)):
     return service.create_gym_member(gym_member)
     
