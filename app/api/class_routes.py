@@ -12,3 +12,7 @@ def list_class_endpoint(service: ClassService = Depends(get_class_service), skip
 @router.post("/", response_model=ClassResponse, status_code=201)
 def create_class_endpoint(classCreate: ClassCreate, service: ClassService = Depends(get_class_service)):
     return service.create_class(classCreate)
+
+@router.post("/{class_id}/add-gym-member/{gym_member_id}", response_model=ClassResponse)
+def add_gym_member_to_class_endpoint(class_id: int, gym_member_id: int, service: ClassService = Depends(get_class_service)):
+    return service.add_gym_member_to_class(gym_member_id, class_id)

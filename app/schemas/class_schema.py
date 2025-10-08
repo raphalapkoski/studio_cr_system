@@ -12,7 +12,7 @@ class ClassCreate(ClassBase):
 
 class ClassResponse(ClassBase):
     id: int
-    students: Optional[List[GymMemberResponse]] = []
+    gym_members: Optional[List[GymMemberResponse]] = []
 
     model_config = {
         "from_attributes": True,

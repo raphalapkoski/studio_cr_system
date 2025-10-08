@@ -9,6 +9,9 @@ class GymMemberRepository:
     def get_all_gym_members(self, skip: int = 0, limit: int = 100):
         return self.db.query(GymMember).offset(skip).limit(limit).all()
     
+    def get_by_id(self, gym_member_id) -> GymMember | None:
+        return self.db.query(GymMember).filter(GymMember.id == gym_member_id).first()
+    
     def cpf_already_exists(self, cpf: str) -> bool:
         return self.db.query(GymMember).filter(GymMember.cpf == cpf).first() is not None
     
