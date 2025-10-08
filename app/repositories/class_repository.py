@@ -26,3 +26,10 @@ class ClassRepository:
         self.db.commit()
         self.db.refresh(current_class)
         return current_class
+    
+    def delete_gym_member_to_class(self, gym_member: GymMember, current_class: Class):
+        current_class.gym_members.remove(gym_member)
+        current_class.total_members += 1
+        self.db.commit()
+        self.db.refresh(current_class)
+        return current_class
