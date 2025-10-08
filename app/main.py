@@ -33,7 +33,3 @@ async def request_validation_exception_handler(request: Request, exc: RequestVal
     
 app.include_router(gym_member_router, prefix="/gym-members", tags=["Alunos"])
 app.include_router(class_router, prefix="/classes", tags=["Aulas"])
-
-@app.get("/")
-def root():
-    return {"message": "Gym System API is running 🏋️‍♂️"}

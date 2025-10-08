@@ -23,6 +23,5 @@ class ClassService:
         current_gym_member = self.repo_gym_member.get_by_id(gym_member_id=gym_member_id)
         if not current_gym_member:
             raise ValueError("Aluno não encontrado")
-        
         return self.repo.add_gym_member_to_class(current_gym_member, current_class)
         

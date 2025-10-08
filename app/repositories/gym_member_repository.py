@@ -21,3 +21,20 @@ class GymMemberRepository:
         self.db.commit()
         self.db.refresh(db_member)
         return db_member
+    
+    def update(self, gym_member: GymMember):
+        self.db.commit()
+        self.db.refresh(gym_member)
+        return gym_member
+    
+    def deactivate(self, gym_member: GymMember):
+        gym_member.active = False
+        self.db.commit()
+        self.db.refresh(gym_member)
+        return gym_member
+    
+    def activate(self, gym_member: GymMember):
+        gym_member.active = True
+        self.db.commit()
+        self.db.refresh(gym_member)
+        return gym_member
