@@ -19,7 +19,8 @@ class GymMemberService:
     def update_gym_member(self, gym_member_id: int, gym_member: GymMemberUpdate):
         current_gym_member = self.__get_by_id(gym_member_id)
         updates = gym_member.model_dump(exclude_unset=True)
-        current_gym_member.__dict__.update(updates)
+        for key, value in updates.items():
+            setattr(current_gym_member, key, value)
         return self.repo.update(current_gym_member)
     
     def deactivate_gym_member(self, gym_member_id: int):

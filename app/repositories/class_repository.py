@@ -20,6 +20,11 @@ class ClassRepository:
         self.db.refresh(db_member)
         return db_member
     
+    def update(self, class_update: Class):        
+        self.db.commit()
+        self.db.refresh(class_update)
+        return class_update
+    
     def add_gym_member_to_class(self, gym_member: GymMember, current_class: Class):
         current_class.gym_members.append(gym_member)
         current_class.total_members -= 1

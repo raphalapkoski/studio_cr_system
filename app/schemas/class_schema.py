@@ -10,6 +10,9 @@ class ClassBase(BaseModel):
 class ClassCreate(ClassBase):
     pass
 
+class ClassUpdate(ClassBase):
+    pass
+
 class ClassResponse(ClassBase):
     id: int
     gym_members: Optional[List[GymMemberResponse]] = []

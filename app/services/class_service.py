@@ -3,7 +3,7 @@ from app.models.class_model import Class
 from app.models.gym_member_model import GymMember
 from app.repositories.class_repository import ClassRepository
 from app.repositories.gym_member_repository import GymMemberRepository
-from app.schemas.class_schema import ClassCreate
+from app.schemas.class_schema import ClassCreate, ClassUpdate
 
 class ClassService:
     def __init__(self, db: Session):
@@ -15,6 +15,13 @@ class ClassService:
     
     def create_class(self, createClass: ClassCreate):     
         return self.repo.create(createClass)
+    
+    def update_class(self, class_id: int, class_update: ClassUpdate):     
+        current_class = self.__get_class_by_id(class_id)
+        updates = class_update.model_dump(exclude_unset=True)
+        for key, value in updates.items():
+            setattr(current_class, key, value)
+        return self.repo.update(current_class)
     
     def add_gym_member_to_class(self, gym_member_id: int, class_id: int):
         current_class = self.__get_class_by_id(class_id)
